@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <img src="media/header.png" alt="Kyocera Logo" class="logo">
+    
+            <!-- MAIN WINDOW -->
+            <div class="main" id="main">
+                <button id="start">Start</button>
+                <button id="editAddressBook">Edit Address Book</button>
+                <button id="editKeys">Edit Keys</button>
+            </div>
+    
+    
+            <!-- ADDRESS BOOK JSON -->
+            <div style="display: none;" class="user-input" id="userInputAddressBook">
+                <h3>Edit Address Book</h3>
+                
+                <div class="csv-json">
+                    <p id="JSONTab" class="json-tab">JSON</p>
+                    <p id="CSVTab" class="csv-tab">CSV</p>
+                </div>
+                <textarea name="" id="addressBook" class="user-input-text"></textarea>
+                <div class="user-input-buttons">
+                    <button id="saveAddressBook">Save</button>
+                    <button id="backButtonAddressBook">Back</button>
+                </div>
+                
+            </div>
+    
+            <!-- KEYS JSON -->
+            <div id="userInputKeys" style="display: none;" class="user-input" id="userInputKeys">
+                <h3>Edit Keys</h3>
+                <textarea name="" id="keys" class="user-input-text"></textarea>
+                <div class="user-input-buttons">
+                    <button id="saveKeys">Save</button>
+                    <button id="backButtonKeys">Back</button>
+                </div>
+            </div>
+        </main>
+        
+
+        <script src="js/popup.js"></script>
+        
+    </body>
+</html>
