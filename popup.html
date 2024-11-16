@@ -1,50 +1,49 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <main>
-            <img src="media/header.png" alt="Kyocera Logo" class="logo">
-    
-            <!-- MAIN WINDOW -->
-            <div class="main" id="main">
-                <button id="start">Start</button>
-                <button id="editAddressBook">Edit Address Book</button>
-                <button id="editKeys">Edit Keys</button>
-            </div>
-    
-    
-            <!-- ADDRESS BOOK JSON -->
-            <div style="display: none;" class="user-input" id="userInputAddressBook">
-                <h3>Edit Address Book</h3>
-                
-                <div class="csv-json">
-                    <p id="JSONTab" class="json-tab">JSON</p>
-                    <p id="CSVTab" class="csv-tab">CSV</p>
-                </div>
-                <textarea name="" id="addressBook" class="user-input-text"></textarea>
-                <div class="user-input-buttons">
-                    <button id="saveAddressBook">Save</button>
-                    <button id="backButtonAddressBook">Back</button>
-                </div>
-                
-            </div>
-    
-            <!-- KEYS JSON -->
-            <div id="userInputKeys" style="display: none;" class="user-input" id="userInputKeys">
-                <h3>Edit Keys</h3>
-                <textarea name="" id="keys" class="user-input-text"></textarea>
-                <div class="user-input-buttons">
-                    <button id="saveKeys">Save</button>
-                    <button id="backButtonKeys">Back</button>
-                </div>
-            </div>
-        </main>
-        
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Extension Form</title>
+    <style>
+        input[disabled] {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <form id="extension-form">
+        <label for="ip">IP Address: </label>
+        <input id="ip" name="ip">
 
-        <script src="js/popup.js"></script>
-        
-    </body>
+        <label for="printer">Select Printer:</label>
+        <select id="printer" name="printer">
+            <option value="taskalfa_2554ci">taskalfa_2554ci</option>
+            <option value="talkalfa_4051i">talkalfa_4051i</option>
+            <option value="ecosys_pa4500">ecosys_pa4500</option>
+        </select>
+        <br><br>
+
+        <label for="csv-file">Upload Address Book (CSV):</label>
+        <input type="file" id="csv-file" name="csv-file" accept=".csv">
+        <br><br>
+
+        <label>Choose Numbering Method:</label>
+        <input type="radio" id="use-csv-numbers" name="numbering-method" value="csv" checked>
+        <label for="use-csv-numbers">Use CSV Numbers</label>
+        <input type="radio" id="increment-numbers" name="numbering-method" value="increment">
+        <label for="increment-numbers">Increment Numbers</label>
+        <br><br>
+
+        <label for="increment-input">Starting Number:</label>
+        <input type="text" id="increment-input" name="increment-input" disabled>
+        <br><br>
+
+        <input type="submit" >
+
+        <script src="papaparse.min.js"></script>
+        <script src="popup.js"></script>
+            
+        </script>
+    </form>
+</body>
 </html>

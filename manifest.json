@@ -1,36 +1,14 @@
 {
-    "manifest_version": 2,
-    "name": "Kyocera Address Book Tool",
-    "version": "1.0",
-    "permissions": [
-        "activeTab",
-        "tabs",
-        "storage",
-        "https://*/*",
-        "http://*/*"     
-    ],
-    "description": "Imports and exports address book on kyocera",
-    "icons": 
-    {
-      "48": "icons/border-48.png"
-    },
-    "browser_action": 
-    {
-      "default_icon": "media/extensionIcon.png",
-      "default_title": "Click me!",
-      "default_popup": "popup.html"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["js/content.js"]
-      }
-    ],
-    "background": 
-    {
-      "scripts": ["js/background.js"],
-      "persistent": false
-    }
-
+  "name": "Kyocera Address Book Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
   }
-  
+}
