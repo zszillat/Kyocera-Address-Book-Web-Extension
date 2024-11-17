@@ -1,162 +1,88 @@
+function formatNumber(num) {
+return   num.toString().padStart(4, '0');
+}
 
-
-// Disable input field when increment option is selected
+// Toggle input field based on selected numbering method
 document.querySelectorAll('input[name="numbering-method"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-        const incrementInput = document.getElementById('increment-input');
-        if (document.getElementById('increment-numbers').checked) {
-            incrementInput.disabled = false;
-        } else {
-            incrementInput.disabled = true;
-        }
+    radio.addEventListener('change', () => {
+        document.getElementById('increment-input').disabled = !document.getElementById('increment-numbers').checked;
     });
 });
 
 /**
- * Sends a POST request to the printer's API to add a new address or perform any other action.
- *
- * @param {string} ip - The IP address of the printer (e.g., '172.16.20.242').
- * @param {string} apilink - The API endpoint (e.g., 'basic/set.cgi').
- * @param {object} jsonData - The data to send (should be in the format of the payload object).
- * @returns {Promise} - Resolves with the response text or JSON from the server.
+ * Sends a POST request to the printer's API.
  */
-function sendPostRequest(ip, apilink, jsonData, loadingMessage) {
-    // Construct the full URL using the provided IP address and API link
+async function sendPostRequest(ip, apilink, jsonData) {
     const url = `https://${ip}/${apilink}`;
-  
-    // Convert the JSON data to URL-encoded format
     const urlEncodedData = new URLSearchParams(jsonData).toString();
-  
-    // Send the POST request using fetch
-    return fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',  // Content type must be URL encoded
-        'Accept': 'text/html, application/xhtml+xml, application/xml;q=0.9',
-        'Accept-Encoding': 'gzip, deflate, br, zstd',  // Matching accept encoding
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache',
-        'User-Agent': navigator.userAgent,  // Automatically uses browser's user-agent
-        'Origin': `https://${ip}`,
-        'Referer': `https://${ip}/basic/AddrBook_Addr_NewCntct_Prpty.htm?arg1=1&arg2=0&arg3=&arg4=0&arg5=&arg6=1&arg50=0`
-      },
-      body: urlEncodedData // Body is the URL-encoded string
-    })
-      .then(response => response.text())  // You can change this to response.json() if the response is JSON
-      .then(data => {
-        //console.log('Success:', data);
-        
-        return data;
-      })
-      .catch((error) => {
-        throw error;  // Propagate the error for further handling if necessary
-      });
-  }
 
-// Form Submission
-document.getElementById('extension-form').addEventListener('submit', function(event) {
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'text/html, application/xhtml+xml, application/xml;q=0.9',
+                'Accept-Encoding': 'gzip, deflate, br, zstd',
+                'Cache-Control': 'no-cache',
+                'Pragma': 'no-cache',
+                'User-Agent': navigator.userAgent,
+                'Origin': `https://${ip}`,
+                'Referer': `https://${ip}/basic/AddrBook_Addr_NewCntct_Prpty.htm`
+            },
+            body: urlEncodedData
+        });
+        return await response.text();
+    } catch (error) {
+        throw error;
+    }
+}
 
+// Handle form submission
+document.getElementById('extension-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
     document.getElementById('loading').style.visibility = "visible";
 
-    // Prevent the default form submission
-    event.preventDefault();
-
-    // Get form elements
     const formElements = event.target.elements;
-
-    // Assign each form input to a variable
     const ip = formElements['ip'].value;
     const printer = formElements['printer'].value;
-    const csvFile = formElements['csv-file'].files[0]; // Handle file input
+    const csvFile = formElements['csv-file'].files[0];
     const numberingMethod = formElements['numbering-method'].value;
-    const incrementInput = formElements['increment-input'].value;
+    let incrementInput = formElements['increment-input'].value;
 
-    var i = 1;
-
-    if (numberingMethod == 'increment-numbers') {
-        i = incrementInput;
-    }
-
-    // Use chrome.runtime.getURL to get the path to the JSON file in the extension
+    let i = (numberingMethod === 'increment') ? incrementInput : 1;
+    console.log(i);
     const jsonFileUrl = chrome.runtime.getURL(`templates/${printer}.json`);
 
-    // Fetch the JSON file
-    fetch(jsonFileUrl)
-        .then(response => response.json()) // Parse the response as JSON
-        .then(jsonData => {
+    try {
+        const jsonData = await fetch(jsonFileUrl).then(response => response.json());
+        const { csv_fields: jsonCSV, json: jsonPost, apiLink } = jsonData;
+        
+        const csvContent = await csvFile.text();
+        const { data: rows, meta: { fields: headers } } = Papa.parse(csvContent, { header: true, skipEmptyLines: true });
 
-            console.log(jsonData);
+        const postPromises = rows.map(row => {
+            let jsonWorkablePost = { ...jsonPost };
+            headers.forEach(header => {
+                const complexHeaderName = jsonCSV[header.trim()];
+                jsonWorkablePost[complexHeaderName] = row[header];
+            });
 
-            const jsonCSV = jsonData['csv_fields'];
-            const jsonPost = jsonData['json'];
-        
-            // Use FileReader to read the file
-            const reader = new FileReader();
-        
-            reader.onload = function(event) {
-                // Parse the CSV content using PapaParse
-                const csvContent = event.target.result;
-        
-                // Parse CSV using PapaParse
-                Papa.parse(csvContent, {
-                    complete: function(results) {
-                        // The results object contains the parsed data
-                        const headers = results.meta.fields; // The CSV headers
-                        const rows = results.data; // The CSV rows
-                        
-                        // Create an array of promises for all POST requests
-                        const postPromises = [];
-        
-                        // Loop through each row
-                        rows.forEach((row, rowIndex) => {
-        
-                            var jsonWorkablePost = jsonPost;
-        
-                            // Loop through each header
-                            headers.forEach(header => {
-                                var complexHeaderName = jsonCSV[header.trim()];
-                                jsonWorkablePost[complexHeaderName] = row[header];
-                            });
-        
-                            if (numberingMethod == 'increment-numbers') {
-                                jsonWorkablePost[jsonCSV['Number']] = i;
-                                i++;
-                            }
+            console.log(numberingMethod)
+            if (numberingMethod === 'increment') {
+                jsonWorkablePost[jsonCSV['Number']] = i;
+                i++
+            }
 
-                            const currentJSON = jsonCSV['Name'];
-
-                            // Add the POST request promise to the array
-                            postPromises.push(
-                                sendPostRequest(
-                                    ip, 
-                                    jsonData['apiLink'], 
-                                    jsonWorkablePost,
-                                    jsonWorkablePost[currentJSON]
-                                )
-                            );
-                        });
-        
-                        // Wait for all POST requests to complete
-                        Promise.all(postPromises)
-                            .then(() => {
-                                document.getElementById('complete').style.visibility = "visible"
-                                document.getElementById('loading').style.visibility = "hidden";
-                            })
-                            .catch((error) => {
-                                document.getElementById('complete').style.visibility = "visible"
-                                document.getElementById('loading').style.visibility = "hidden";
-                            });
-                    },
-                    header: true, // Treat the first row as headers
-                    skipEmptyLines: true, // Skip empty lines
-                });
-            };
-        
-            // Read the file as text
-            reader.readAsText(csvFile);
-        })
-        .catch(error => {
-            document.getElementById('complete').style.visibility = "visible"
-            document.getElementById('loading').style.visibility = "hidden";
+            jsonWorkablePost[jsonCSV['Number']] = formatNumber(jsonWorkablePost[jsonCSV['Number']]);
+            console.log(jsonWorkablePost[jsonCSV['Number']]);
+            return sendPostRequest(ip, apiLink, jsonWorkablePost);
         });
+
+        await Promise.all(postPromises);
+        document.getElementById('complete').style.visibility = "visible";
+    } catch (error) {
+        console.error(error);
+    } finally {
+        document.getElementById('loading').style.visibility = "hidden";
+    }
 });
