@@ -49,7 +49,6 @@ function sendPostRequest(ip, apilink, jsonData, loadingMessage) {
         return data;
       })
       .catch((error) => {
-        console.error('Error:', error);
         throw error;  // Propagate the error for further handling if necessary
       });
   }
@@ -72,7 +71,7 @@ document.getElementById('extension-form').addEventListener('submit', function(ev
     const numberingMethod = formElements['numbering-method'].value;
     const incrementInput = formElements['increment-input'].value;
 
-    var i = 1
+    var i = 1;
 
     if (numberingMethod == 'increment-numbers') {
         i = incrementInput;
@@ -95,67 +94,69 @@ document.getElementById('extension-form').addEventListener('submit', function(ev
             const reader = new FileReader();
         
             reader.onload = function(event) {
-            // Parse the CSV content using PapaParse
-            const csvContent = event.target.result;
+                // Parse the CSV content using PapaParse
+                const csvContent = event.target.result;
         
-            // Parse CSV using PapaParse
-            Papa.parse(csvContent, {
-                complete: function(results) {
-                // The results object contains the parsed data
-                const headers = results.meta.fields; // The CSV headers
-                const rows = results.data; // The CSV rows
-                
-                // Loop through each row
-                rows.forEach((row, rowIndex) => {
+                // Parse CSV using PapaParse
+                Papa.parse(csvContent, {
+                    complete: function(results) {
+                        // The results object contains the parsed data
+                        const headers = results.meta.fields; // The CSV headers
+                        const rows = results.data; // The CSV rows
+                        
+                        // Create an array of promises for all POST requests
+                        const postPromises = [];
         
-                    var jsonWorkablePost = jsonPost;
+                        // Loop through each row
+                        rows.forEach((row, rowIndex) => {
         
-                    // Loop through each header
-                    headers.forEach(header => {
+                            var jsonWorkablePost = jsonPost;
         
-                        var complexHeaderName = jsonCSV[header.trim()];
-                        jsonWorkablePost[complexHeaderName] = row[header]
+                            // Loop through each header
+                            headers.forEach(header => {
+                                var complexHeaderName = jsonCSV[header.trim()];
+                                jsonWorkablePost[complexHeaderName] = row[header];
+                            });
         
-                    });
-        
-                    if (numberingMethod == 'increment-numbers') {
-                        json.jsonWorkablePost[
-                            jsonCSV['Number']
-                        ] = i;
-        
-                        i++;
-                    }
+                            if (numberingMethod == 'increment-numbers') {
+                                jsonWorkablePost[jsonCSV['Number']] = i;
+                                i++;
+                            }
 
-                    currentJSON = jsonCSV['Name'];
+                            const currentJSON = jsonCSV['Name'];
 
-                    sendPostRequest(
-                        ip, 
-                        jsonData['apiLink'], 
-                        jsonWorkablePost,
-                        jsonWorkablePost[currentJSON]
-                    )
+                            // Add the POST request promise to the array
+                            postPromises.push(
+                                sendPostRequest(
+                                    ip, 
+                                    jsonData['apiLink'], 
+                                    jsonWorkablePost,
+                                    jsonWorkablePost[currentJSON]
+                                )
+                            );
+                        });
+        
+                        // Wait for all POST requests to complete
+                        Promise.all(postPromises)
+                            .then(() => {
+                                document.getElementById('complete').style.visibility = "visible"
+                                document.getElementById('loading').style.visibility = "hidden";
+                            })
+                            .catch((error) => {
+                                document.getElementById('complete').style.visibility = "visible"
+                                document.getElementById('loading').style.visibility = "hidden";
+                            });
+                    },
+                    header: true, // Treat the first row as headers
+                    skipEmptyLines: true, // Skip empty lines
                 });
-        
-                },
-                header: true, // Treat the first row as headers
-                skipEmptyLines: true, // Skip empty lines
-            });
             };
         
             // Read the file as text
             reader.readAsText(csvFile);
-
-
-
-
-
-
         })
         .catch(error => {
-            console.error('Error loading JSON file:', error);
+            document.getElementById('complete').style.visibility = "visible"
+            document.getElementById('loading').style.visibility = "hidden";
         });
-
-    alert("Complete");
-    document.getElementById('loading').style.visibility = "hidden";
-    
 });
