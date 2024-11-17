@@ -1,0 +1,3 @@
+Number,Name,E-mail_Address,SMB_Host_Name,SMB_Port_Number,SMB_Path,SMB_Login_User_Name,SMB_Login_Password,FTP_Host_Name,FTP_Port_Number,FTP_Path,FTP_Login_User_Name,FTP_Login_Password,FAX_Number
+1,John Doe,john.doe@email.com,,,,,,,,,,,
+2,Jane Doe,jane.doe@email.com,WORKSTATION-QWERTY1,445,scans,Scanner,Sc@nner,,,,,,

@@ -2,16 +2,12 @@
   "name": "Kyocera Address Book Extension",
   "version": "1.0",
   "manifest_version": 3,
-  "permissions": [
-    "activeTab"
-  ],
-  "host_permissions": [
-    "http://172.16.20.242/*",
-    "https://172.16.20.242/*"
-  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": "lib/icon.png"
   },
-  "homepage_url": "https://github.com/zszillat/Kyocera-Address-Book-Web-Extension"
+  "homepage_url": "https://github.com/zszillat/Kyocera-Address-Book-Web-Extension",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }
