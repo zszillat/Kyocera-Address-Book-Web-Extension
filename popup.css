@@ -7,8 +7,15 @@
   font-weight: 500;
 }
 
+.github {
+  font-size: 15px;
+  text-decoration: underline;
+  color: #929292;
+  margin-top: 15px;
+}
+
 .header {
-  width: 95%;
+  width: 70%;
 }
 
 #extension-form {
@@ -42,6 +49,10 @@ body {
   background-color: #f9f9f9;
   padding: 25px;
   width: 285px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 input {
@@ -73,6 +84,7 @@ input[type="file"] {
   display: flex;
   flex-direction: column;
   margin: 10px 15px;
+  font-size: 5px;
 }
 
 input[type="submit"] {
@@ -90,7 +102,7 @@ input[type="submit"]:hover {
 
 .loading-container {
   width: 80%;
-  height: 10px;
+  height: 5px;
   background-color: white;
   border: 2px solid #ddd;
   border-radius: 5px;
@@ -98,6 +110,7 @@ input[type="submit"]:hover {
   overflow: hidden;
   margin:10px 0 5px 0;
   visibility: hidden;
+  border-radius: 3px;
 }
 
 .loading-bar {
@@ -108,6 +121,12 @@ input[type="submit"]:hover {
   top: 0;
   left: 0;
   animation: move 3000ms reverse infinite;
+}
+
+.complete {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 12px;
 }
 
 @keyframes move {

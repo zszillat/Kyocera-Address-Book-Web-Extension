@@ -12,5 +12,6 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": "lib/icon.png"
-  }
+  },
+  "homepage_url": "https://github.com/zszillat/Kyocera-Address-Book-Web-Extension"
 }
