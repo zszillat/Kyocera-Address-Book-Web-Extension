@@ -14,16 +14,16 @@
     />
   </head>
   <body>
-    <img src="lib/header.png" alt="Kyocera Header" class="header" />
+    <img src="lib/header.png" alt="Kyocera Header" class="header non-interactive" />
 
     <form id="extension-form">
       <div class="label">
-        <label type="text" for="ip">IP Address</label>
+        <label class="unselectable" type="text" for="ip">IP Address</label>
       </div>
       <input type="text" id="ip" name="ip" />
 
       <div class="label">
-        <label for="printer">Select Printer</label>
+        <label class="unselectable" for="printer">Select Printer</label>
       </div>
       <select id="printer" name="printer">
         <option value="taskalfa_2554ci">TASKalfa 2554ci</option>
@@ -32,12 +32,12 @@
       </select>
 
       <div class="label">
-        <label for="csv-file">Address Book (CSV):</label>
+        <label class="unselectable" for="csv-file">Address Book (CSV):</label>
       </div>
       <input type="file" id="csv-file" name="csv-file" accept=".csv" />
 
       <div class="label">
-        <label>Numbering Method</label>
+        <label class="unselectable">Numbering Method</label>
       </div>
       <div class="radios">
         <div class="radio">
@@ -48,7 +48,7 @@
             value="csv"
             checked
           />
-          <label for="use-csv-numbers">Match CSV</label>
+          <label class="unselectable" for="use-csv-numbers">Match CSV</label>
         </div>
         <div class="radio">
           <input
@@ -57,12 +57,12 @@
             name="numbering-method"
             value="increment"
           />
-          <label for="increment-numbers">Increment</label>
+          <label class="unselectable" for="increment-numbers">Increment</label>
         </div>
       </div>
 
       <div class="label">
-        <label for="increment-input">Starting Number</label>
+        <label class="unselectable" for="increment-input">Starting Number</label>
       </div>
       <input type="text" id="increment-input" name="increment-input" disabled />
 

@@ -7,6 +7,14 @@
   font-weight: 500;
 }
 
+.non-interactive {
+  pointer-events: none;
+}
+
+.unselectable {
+  user-select: none;
+}
+
 .github {
   font-size: 15px;
   text-decoration: underline;
