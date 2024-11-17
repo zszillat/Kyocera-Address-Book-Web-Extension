@@ -18,25 +18,29 @@
       
 
       <form id="extension-form">
-        <div class="line">
-          <label class="unselectable" type="text" for="ip">IP Address:</label>
+        <div class="line" id="lineIP">
+          <label class="unselectable" type="text" for="ip">
+            IP Address
+          </label>
           <input type="text" id="ip" name="ip" />
         </div>
         
         
-        <div class="line">
+        <div class="line" id="linePrinter">
           <label class="unselectable" for="printer">Select Printer</label>
           <select id="printer" name="printer">
             <option value="taskalfa_2554ci">TASKalfa 2554ci</option>
           </select>
         </div>
 
-        <div class="line">
-          <label class="unselectable" for="csv-file">Address Book (CSV):</label>
+        <div class="line" id="lineCSV">
+          <label class="unselectable" for="csv-file">
+            <p>Address Book (CSV):</p>
+          </label>
           <input type="file" id="csv-file" name="csv-file" accept=".csv" />
         </div>
 
-        <div class="line">
+        <div class="line" id="lineNumbering" autocomplete="off">
           <label class="unselectable">Numbering Method</label>
 
           <div class="radios">
@@ -65,11 +69,12 @@
           </div>
         </div>
   
-        <div class="line">
-          <label class="unselectable" for="increment-input">Starting Number: </label>
-          <input type="text" id="increment-input" name="increment-input" disabled />
+        <div class="line" id="lineStartNumber">
+          <label class="unselectable" for="increment-input" >Starting Number: </label>
+          <input type="text" id="increment-input" name="increment-input" value="1" disabled />
         </div>
-        
+
+        <p class="info" id="info">Hover over a field and more info will appear here</p>
   
         <div class="loading-container">
           <div class="loading-bar" id="loading"></div>

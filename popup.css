@@ -71,6 +71,14 @@ form {
   display: flex;
 }
 
+.radio {
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .loading-container {
   width: 80%;
   height: 5px;
@@ -109,4 +117,20 @@ form {
   100% {
     transform: translateX(-250%);
   }
+}
+
+label {
+  display: flex;
+}
+
+.info {
+  color: gray;
+  width: 60%;
+  height: 40px;
+  text-align: center;
+}
+
+#increment-input {
+  width: 50px;
+  text-align: center;
 }

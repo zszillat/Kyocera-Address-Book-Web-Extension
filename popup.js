@@ -86,3 +86,30 @@ document.getElementById('extension-form').addEventListener('submit', async funct
         document.getElementById('loading').style.visibility = "hidden";
     }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const infoElement = document.getElementById("info");
+    const defaultInfoMessage = "Hover over a field and more info will appear here";
+  
+    // Mapping hover targets to their explanations
+    const hoverMessages = {
+      lineIP: "Enter the IP address of the device here.",
+      linePrinter: "Select the printer model from the dropdown menu.",
+      lineCSV: "Upload a CSV file containing the address book. For a template csv please see example.csv in the github repository",
+      lineNumbering: "Number can be left blank in the CSV and increment will increment each address automatically",
+      lineStartNumber: "Set this to one higher than the highest already existing number, or leave it at 1 if starting with a blank address book",
+    };
+  
+    // Add hover event listeners to relevant elements
+    Object.keys(hoverMessages).forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.addEventListener("mouseenter", () => {
+          infoElement.textContent = hoverMessages[id];
+        });
+        element.addEventListener("mouseleave", () => {
+          infoElement.textContent = defaultInfoMessage;
+        });
+      }
+    });
+  });
