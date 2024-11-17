@@ -9,5 +9,10 @@
   "homepage_url": "https://github.com/zszillat/Kyocera-Address-Book-Web-Extension",
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-  }
+  },
+  "host_permissions": [
+  "http://*/",
+  "https://*/"
+]
+
 }
