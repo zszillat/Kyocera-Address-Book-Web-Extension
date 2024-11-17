@@ -1,147 +1,72 @@
-/* Global reset */
-* {
-  padding: 0;
+html, body {
   margin: 0;
-  color: rgb(14, 14, 14);
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.non-interactive {
-  pointer-events: none;
-}
-
-.unselectable {
-  user-select: none;
-}
-
-.github {
-  font-size: 15px;
-  text-decoration: underline;
-  color: #929292;
-  margin-top: 15px;
-}
-
-.header {
-  width: 70%;
-}
-
-#extension-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#csv-file {
-  width: 250px;
-}
-
-.label {
-  margin-top: 10px;
-  width: 100%;
-  display: flex;
-  align-items: end;
-  justify-content: baseline;
-}
-
-.label > label {
-  margin-left: 10px;
-  width: 100%;
-}
-
-input[disabled] {
-  background-color: #e0e0e0;
+  padding: 0;
 }
 
 body {
-  background-color: #f9f9f9;
-  padding: 25px;
-  width: 285px;
+  width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  padding: 10px 0 0 0;
+}
+
+.header {
+  width: 95%;
+  margin-bottom: 20px;
+}
+
+input[type="submit"] {
+  background-color: #019BC9;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #52AAF7;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3), 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.github {
+  color: #0366d6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  position: relative;
+  margin: 10px 0;
+}
+
+.github:hover  {
+  color: #054a8e;
+  text-shadow: 0 0 3px rgba(3, 102, 214, 0.3); 
+}
+
+form {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-input {
-  border: none;
+.line {
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-input[type="text"] {
-  background-color: #e2e2e2;
-  height: 30px;
-  width: 95%;
-}
-
-select {
-    font-size: 12px;
-    height: 20px;
-    width: 95%;
-}
-
-input[type="file"] {
-  margin-top: 10px;
+.line > input, .line > select {
+  width: 50%;
 }
 
 .radios {
   display: flex;
-  justify-content: space-between;
-}
-
-.radio {
-  display: flex;
-  flex-direction: column;
-  margin: 10px 15px;
-  font-size: 5px;
-}
-
-input[type="submit"] {
-  background-color: #eb0030;
-  height: 45px;
-  color: white;
-  width: 95%;
-  transition: background-color 150ms;
-}
-
-input[type="submit"]:hover {
-  background-color: #610517;
-  cursor: grab;
-}
-
-.loading-container {
-  width: 80%;
-  height: 5px;
-  background-color: white;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  position: relative;
-  overflow: hidden;
-  margin:10px 0 5px 0;
-  visibility: hidden;
-  border-radius: 3px;
-}
-
-.loading-bar {
-  width: 30%; /* The width of the green bar */
-  height: 100%;
-  background-color: green;
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: move 3000ms reverse infinite;
-}
-
-.complete {
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-size: 12px;
-}
-
-@keyframes move {
-  0% {
-    transform: translateX(650%);
-  }
-  100% {
-    transform: translateX(-250%);
-  }
 }
