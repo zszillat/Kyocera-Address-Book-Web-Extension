@@ -70,3 +70,43 @@ form {
 .radios {
   display: flex;
 }
+
+.loading-container {
+  width: 80%;
+  height: 5px;
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  margin:10px 0 5px 0;
+  border-radius: 3px;
+  visibility: hidden;
+}
+
+.loading-bar {
+  width: 30%; /* The width of the green bar */
+  height: 100%;
+  background-color: green;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: move 3000ms reverse infinite;
+
+}
+
+.complete {
+  margin-bottom: 15px;
+  margin-top: 5px;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(650%);
+  }
+  100% {
+    transform: translateX(-250%);
+  }
+}
