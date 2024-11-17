@@ -20,7 +20,7 @@ document.querySelectorAll('input[name="numbering-method"]').forEach(radio => {
  * @param {object} jsonData - The data to send (should be in the format of the payload object).
  * @returns {Promise} - Resolves with the response text or JSON from the server.
  */
-function sendPostRequest(ip, apilink, jsonData) {
+function sendPostRequest(ip, apilink, jsonData, loadingMessage) {
     // Construct the full URL using the provided IP address and API link
     const url = `https://${ip}/${apilink}`;
   
@@ -44,7 +44,8 @@ function sendPostRequest(ip, apilink, jsonData) {
     })
       .then(response => response.text())  // You can change this to response.json() if the response is JSON
       .then(data => {
-        console.log('Success:', data);
+        //console.log('Success:', data);
+        
         return data;
       })
       .catch((error) => {
@@ -52,10 +53,12 @@ function sendPostRequest(ip, apilink, jsonData) {
         throw error;  // Propagate the error for further handling if necessary
       });
   }
-  
 
 // Form Submission
 document.getElementById('extension-form').addEventListener('submit', function(event) {
+
+    document.getElementById('loading').style.visibility = "visible";
+
     // Prevent the default form submission
     event.preventDefault();
 
@@ -122,11 +125,15 @@ document.getElementById('extension-form').addEventListener('submit', function(ev
         
                         i++;
                     }
-        
+
+                    currentJSON = jsonCSV['Name'];
+
                     sendPostRequest(
                         ip, 
                         jsonData['apiLink'], 
-                        jsonWorkablePost)
+                        jsonWorkablePost,
+                        jsonWorkablePost[currentJSON]
+                    )
                 });
         
                 },
@@ -147,5 +154,8 @@ document.getElementById('extension-form').addEventListener('submit', function(ev
         .catch(error => {
             console.error('Error loading JSON file:', error);
         });
+
+    alert("Complete");
+    document.getElementById('loading').style.visibility = "hidden";
     
 });

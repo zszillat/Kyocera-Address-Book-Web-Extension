@@ -5,10 +5,15 @@
   "permissions": [
     "activeTab"
   ],
+  "host_permissions": [
+    "http://172.16.20.242/*",
+    "https://172.16.20.242/*"
+  ],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": "lib/icon.png"
   }
 }

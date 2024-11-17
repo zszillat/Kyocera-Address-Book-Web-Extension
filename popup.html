@@ -4,43 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chrome Extension Form</title>
-    <style>
-        input[disabled] {
-            background-color: #e0e0e0;
-        }
-    </style>
+    <link rel="stylesheet" href="popup.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <img src="lib/header.png" alt="Kyocera Header" class="header">
     <form id="extension-form">
-        <label for="ip">IP Address: </label>
-        <input id="ip" name="ip">
-
-        <label for="printer">Select Printer:</label>
+        <div class="label">
+            <label type="text" for="ip">
+                IP Address 
+            </label>
+        </div>
+        
+        <input type="text" id="ip" name="ip">
+        <div class="label">
+            <label for="printer">Select Printer</label>
+        </div>
+        
         <select id="printer" name="printer">
-            <option value="taskalfa_2554ci">taskalfa_2554ci</option>
+            <option value="taskalfa_2554ci">TASKalfa 2554ci</option>
             <option value="talkalfa_4051i">talkalfa_4051i</option>
             <option value="ecosys_pa4500">ecosys_pa4500</option>
         </select>
-        <br><br>
 
-        <label for="csv-file">Upload Address Book (CSV):</label>
+        <div class="label">
+            <label for="csv-file">Address Book (CSV):</label>
+        </div>
+        
         <input type="file" id="csv-file" name="csv-file" accept=".csv">
-        <br><br>
+        
 
-        <label>Choose Numbering Method:</label>
-        <input type="radio" id="use-csv-numbers" name="numbering-method" value="csv" checked>
-        <label for="use-csv-numbers">Use CSV Numbers</label>
-        <input type="radio" id="increment-numbers" name="numbering-method" value="increment">
-        <label for="increment-numbers">Increment Numbers</label>
-        <br><br>
+        <div class="label">
+            <label>Numbering Method</label>
+        </div>
+        <div class="radios">
+            <div class="radio">
+                <input type="radio" id="use-csv-numbers" name="numbering-method" value="csv" checked>
+                <label for="use-csv-numbers">Match CSV</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="increment-numbers" name="numbering-method" value="increment">
+                <label for="increment-numbers">Increment</label>
+            </div>
+        </div>
 
-        <label for="increment-input">Starting Number:</label>
+        <div class="label">
+            <label for="increment-input">Starting Number:</label>
+        </div>
+        
         <input type="text" id="increment-input" name="increment-input" disabled>
-        <br><br>
+        <div class="status" id="status">Status</div>
+        <div class="loading-container">
+            <div class="loading-bar" id="loading"></div>
+        </div>
 
         <input type="submit" >
 
-        <script src="papaparse.min.js"></script>
+        <script src="lib/papaparse.min.js"></script>
         <script src="popup.js"></script>
             
         </script>
