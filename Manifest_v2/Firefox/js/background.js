@@ -1,6 +1,6 @@
 chrome.browserAction.onClicked.addListener(() => {
-    const width = 400; // Desired width
-    const height = 600; // Desired height
+    const width = 450; // Desired width
+    const height = 650; // Desired height
     const left = Math.round((screen.width - width) / 2); // Center on the screen
     const top = Math.round((screen.height - height) / 2);
   
