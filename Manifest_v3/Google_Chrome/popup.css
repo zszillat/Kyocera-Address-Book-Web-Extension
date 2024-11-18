@@ -1,0 +1,136 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0 0 0;
+}
+
+.header {
+  width: 95%;
+  margin-bottom: 20px;
+}
+
+input[type="submit"] {
+  background-color: #019BC9;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #52AAF7;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3), 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.github {
+  color: #0366d6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  position: relative;
+  margin: 10px 0;
+}
+
+.github:hover  {
+  color: #054a8e;
+  text-shadow: 0 0 3px rgba(3, 102, 214, 0.3); 
+}
+
+form {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line {
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.line > input, .line > select {
+  width: 50%;
+}
+
+.radios {
+  display: flex;
+}
+
+.radio {
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.loading-container {
+  width: 80%;
+  height: 5px;
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  margin:10px 0 5px 0;
+  border-radius: 3px;
+  visibility: hidden;
+}
+
+.loading-bar {
+  width: 30%; /* The width of the green bar */
+  height: 100%;
+  background-color: green;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: move 3000ms reverse infinite;
+
+}
+
+.complete {
+  margin-bottom: 15px;
+  margin-top: 5px;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(650%);
+  }
+  100% {
+    transform: translateX(-250%);
+  }
+}
+
+label {
+  display: flex;
+}
+
+.info {
+  color: gray;
+  width: 60%;
+  height: 40px;
+  text-align: center;
+}
+
+#increment-input {
+  width: 50px;
+  text-align: center;
+}
