@@ -1,12 +1,7 @@
 Number,Name,E-mail_Address,SMB_Host_Name,SMB_Port_Number,SMB_Path,SMB_Login_User_Name,SMB_Login_Password,FTP_Host_Name,FTP_Port_Number,FTP_Path,FTP_Login_User_Name,FTP_Login_Password,FAX_Number
-0,John Doe,john.doe@email.com,,,,,,,,,,,
-1,Jane Doe,jane.doe@email.com,WORKSTATION-QWERTY1,445,scans,Scanner,Sc@nner,,,,,,
-2,John Smith,john.smith@email.com,,,,,,,,,,,(555) 123-4567
-3,Gerry Gordon,gerry.gordon@email.com,,,,,,,,,,,
-4,Melissa Windham,melissa.windham@email.com,,,,,,,,,,,
-5,Connor Cunningham,connor.cunningham@email.com,,,,,,,,,,,(555) 234-5678
-6,Jake Handel,jake.handel@email.com,DESKTOP-XYZ1234,445,Scans,Scanner,Sc@nner,,,,,,
-7,Sarah Johnson,sarah.johnson@email.com,,,,,,,,,,,(555) 456-7890
-8,Michael Brown,michael.brown@email.com,192.168.1.21,445,documents/mbrown,Scanner,Sc@nner,,,,,,(555) 567-8901
-9,Emily Davis,emily.davis@email.com,DESKTOP-4HGF89K,445,scans,Scanner,Sc@nner,,,,,,(555) 678-9012
-10,David Clark,david.clark@email.com,,,,,,,,,,,(555) 345-6789
+1,Tina ,tina.lopez@questtitle.com,,445,,,,,,,,,
+2,Christi,christi.ashton@questtitle.com,,445,,,,,,,,,
+,Kimmie,kimmie.dimmerling@questtitle.com,,445,,,,,,,,,
+,Admin,admin@questtitle.com,,445,,,,,,,,,
+,Kimmie Personal,dimmerling3@hotmail.com,,445,,,,,,,,,
+,Erica,erica.warner@questtitle.com,,445,,,,,,,,,

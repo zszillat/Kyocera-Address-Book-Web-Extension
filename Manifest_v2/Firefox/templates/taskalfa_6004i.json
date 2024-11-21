@@ -1,0 +1,53 @@
+{
+    "json": {
+        "okhtmfile": "/basic/Contact_BasicRslt.htm",
+        "failhtmfile": "/basic/Contact_BasicErr.htm",
+        "func": "addAbpPersonal",
+        "arg01_PageNum": 1,
+        "arg02_Sort": 0,
+        "arg03_Search": "",
+        "arg04_pageType": 0,
+        "arg05_MemoryID": "",
+        "arg12_SMBPassword": "SMB_LOGIN_PASSWORD",
+        "arg16_FTPPassword": "FTP_LOGIN_PASSWORD",
+        "arg50": 0,
+        "arg25_furi": "",
+        "arg51": 0,
+        "arg35": 1,
+        "hidden": "",
+        "arg06_sID": "0333",
+        "arg07_Name": "NAME",
+        "arg08_Email": "EMAIL_ADDRESS",
+        "arg09_SMBAddress": "HOST_NAME",
+        "arg38": 334,
+        "arg10_SMBPathName": "PATH",
+        "arg11_SMBLoginName": "SMB_LOGIN_USER_NAME",
+        "SMBPassword": "SMB_LOGIN_PASSWORD",
+        "arg13_FTPAddress": "FTP_HOST_NAME",
+        "arg39": 335,
+        "arg14_FTPPathName": "FTP_PATH",
+        "arg15_FTPLoginName": "FTP_LOGIN_USER_NAME",
+        "FTPPassword": "FTP_LOGIN_PASSWORD",
+        "arg17_FAXNumber": "3333333333",
+        "submit001": "Submit"
+    },
+
+    "csv_fields" : {
+        "Number":"arg06_sID",
+        "Name":"arg07_Name",
+        "E-mail_Address":"arg08_Email",
+        "SMB_Host_Name":"arg09_SMBAddress",
+        "SMB_Port_Number":"arg38",
+        "SMB_Path":"arg10_SMBPathName",
+        "SMB_Login_User_Name":"arg11_SMBLoginName",
+        "SMB_Login_Password":"SMBPassword",
+        "FTP_Host_Name":"arg13_FTPAddress",
+        "FTP_Port_Number":"arg39",
+        "FTP_Path":"arg14_FTPPathName",
+        "FTP_Login_User_Name":"arg15_FTPLoginName",
+        "FTP_Login_Password":"FTPPassword",
+        "FAX_Number":"arg17_FAXNumber"
+    },
+
+    "apiLink":"basic/set.cgi"
+}
