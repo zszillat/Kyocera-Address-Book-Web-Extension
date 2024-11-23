@@ -8,6 +8,7 @@ A web extension for adding addresses to the address book in bulk using a CSV fil
 
 ## Tested Models
 -TASKalfa 2554ci
+
 -TASKalfa 6004i
 
 Use it on other models at your own risk
