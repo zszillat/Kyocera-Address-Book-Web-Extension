@@ -44,14 +44,13 @@ document.getElementById('extension-form').addEventListener('submit', async funct
 
     const formElements = event.target.elements;
     const ip = formElements['ip'].value;
-    const printer = formElements['printer'].value;
     const csvFile = formElements['csv-file'].files[0];
     const numberingMethod = formElements['numbering-method'].value;
     let incrementInput = formElements['increment-input'].value;
 
     let i = (numberingMethod === 'increment') ? incrementInput : 1;
     console.log(i);
-    const jsonFileUrl = chrome.runtime.getURL(`templates/${printer}.json`);
+    const jsonFileUrl = chrome.runtime.getURL(`template.json`);
 
     try {
         const jsonData = await fetch(jsonFileUrl).then(response => response.json());
@@ -94,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mapping hover targets to their explanations
     const hoverMessages = {
       lineIP: "Enter the IP address of the device here.",
-      linePrinter: "If your model isn't listed, try the closest match at your own risk.",
       lineCSV: "Upload a CSV file containing the address book. For a template csv please see example.csv in the github repository",
       lineNumbering: "Number can be left blank in the CSV and increment will increment each address automatically",
       lineStartNumber: "Set this to one higher than the highest already existing number, or leave it at 1 if starting with a blank address book",
