@@ -87,6 +87,18 @@ document.getElementById('extension-form').addEventListener('submit', async funct
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    //get current tab
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        let currentTab = tabs[0];
+        console.log(currentTab.url);
+
+        if (currentTab) {
+          document.getElementById('ip').textContent = "Current URL: " + currentTab.url;
+ 
+        }
+    });
+
     const infoElement = document.getElementById("info");
     const defaultInfoMessage = "Hover over a field and more info will appear here";
   
@@ -110,4 +122,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     });
+
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        let currentTab = tabs[0];
+        if (currentTab) {
+            document.getElementById('lineIP').style.display = "none";
+          document.getElementById('ip').value = cleanUrl(currentTab.url);
+        }
+      });
+
   });
+
+  function cleanUrl(url) {
+    // Remove the "https://" prefix if it exists
+    if (url.startsWith('https://')) {
+      url = url.slice(8);
+    }
+    
+    // Remove the trailing slash if it exists
+    if (url.endsWith('/')) {
+      url = url.slice(0, -1);
+    }
+    
+    return url;
+  }
