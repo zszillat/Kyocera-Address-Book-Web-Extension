@@ -1,0 +1,35 @@
+okhtmfile: /basic/Contact_BasicRslt.htm
+failhtmfile: /basic/Contact_BasicErr.htm
+func: addAbpPersonal
+arg01_PageNum: 
+arg02_Sort: 0
+arg03_Search: 
+arg04_pageType: 0
+arg05_MemoryID: 
+arg12_SMBPassword: SMBPASS
+arg16_FTPPassword: FPTPASS
+arg21_FCodePassword: 456
+arg50: 0
+arg25_furi: 
+arg51: 0
+arg35: 1
+hidden: 
+arg06_sID: 001
+arg07_Name: Name
+arg08_Email: Email@email.com
+arg09_SMBAddress: SMB_HOSTNAME
+arg38: 445
+arg10_SMBPathName: SMBPATH
+arg11_SMBLoginName: SMGUSER
+SMBPassword: SMBPASS
+arg13_FTPAddress: FTPHOST
+arg39: 21
+arg14_FTPPathName: FTPPATH
+arg15_FTPLoginName: FTPUSER
+FTPPassword: FPTPASS
+arg17_FAXNumber: 3333333333
+arg20_FCodeSubAddr: 123
+FCodePassword: 456
+arg18_BaudRate: 0
+arg19_ECM: 1
+submit001: Submit
