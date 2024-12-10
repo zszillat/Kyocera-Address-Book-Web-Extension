@@ -44,13 +44,14 @@ document.getElementById('extension-form').addEventListener('submit', async funct
 
     const formElements = event.target.elements;
     const ip = formElements['ip'].value;
+    const printer = formElements['printer'].value;
     const csvFile = formElements['csv-file'].files[0];
     const numberingMethod = formElements['numbering-method'].value;
     let incrementInput = formElements['increment-input'].value;
 
     let i = (numberingMethod === 'increment') ? incrementInput : 1;
     console.log(i);
-    const jsonFileUrl = chrome.runtime.getURL(`template.json`);
+    const jsonFileUrl = chrome.runtime.getURL(`lib/Models/${printer}.json`);
 
     try {
         const jsonData = await fetch(jsonFileUrl).then(response => response.json());

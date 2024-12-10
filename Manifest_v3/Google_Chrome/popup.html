@@ -19,6 +19,17 @@
       <p style="font-weight: 600;">Ensure the printer web console is open when using this tool</p>
 
       <form id="extension-form">
+        <div class="line">
+          <div class="label">
+            <label for="printer">Select Printer</label>
+          </div>
+          <select id="printer" name="printer">
+            <option value="taskalfa_2554ci">TASKalfa 2554ci</option>
+            <option value="talkalfa_6004i">TASKalfa 6004i</option>
+            <option value="ecosys_ma4000cifx">Ecosys MA4000cifx</option>
+          </select>
+        </div>
+
         <div class="line" id="lineIP">
           <label class="unselectable" type="text" for="ip">
             IP Address:
