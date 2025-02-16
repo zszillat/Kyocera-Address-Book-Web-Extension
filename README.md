@@ -3,7 +3,7 @@ A web extension for adding addresses to the address book in bulk using a CSV fil
 
 ### Disclaimer: This extension is not affiliated with Kyocera. It is an open-source project.
 
-[Extension Website](https://kyocerawebextension.netlify.app/)
+[Extension Website](https://kyocera-ext.netlify.app/)
 
 
 ##### This extension works by sending a cgi file to the printer. so far all models/firmware I've worked with have used identical cgi files. Here are the models that have been tested on so far
